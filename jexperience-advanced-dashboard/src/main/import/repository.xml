@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
+   <modules jcr:primaryType="jnt:modules">
+      <jexperience-advanced-dashboard j:dependencies="default"
+                                      j:modulePriority="0"
+                                      j:moduleType="module"
+                                      j:title="jexperience-advanced-dashboard"
+                                      jcr:primaryType="jnt:module">
+         <portlets jcr:primaryType="jnt:portletFolder"/>
+         <files jcr:primaryType="jnt:folder"/>
+         <contents jcr:primaryType="jnt:contentFolder"/>
+         <templates j:rootTemplatePath="/base" jcr:primaryType="jnt:templatesFolder">
+            <files jcr:primaryType="jnt:folder"/>
+            <contents jcr:primaryType="jnt:contentFolder"/>
+            <site-settings-base jcr:primaryType="jnt:template">
+               <jexperience j:hiddenTemplate="false"
+                            j:icon="#/modules/jexperience/templates/files/icons_product_MF.png"
+                            j:view="wemSettings"
+                            jcr:mixinTypes="jmix:useUILocale"
+                            jcr:primaryType="jnt:template">
+                  <j:translation_en jcr:language="en"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="jExperience"/>
+                  <j:translation_de jcr:language="de"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="jExperience"/>
+                  <j:translation_fr jcr:language="fr"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="jExperience"/>
+                  <j:translation_it jcr:language="it"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="jExperience"/>
+                  <j:translation_es jcr:language="es"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="jExperience"/>
+                  <j:translation_pt jcr:language="pt"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="jExperience"/>
+                  <marketing-100-advanced-dashboard j:applyOn="jnt:virtualsite"
+                                                    j:defaultTemplate="false"
+                                                    j:hiddenTemplate="false"
+                                                    j:view="wemSettingsAdvancedDashboard"
+                                                    jcr:primaryType="jnt:contentTemplate">
+                     <j:translation_en jcr:language="en"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="Advanced dashboard"/>
+                     <j:translation_de jcr:language="de"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="Métriques avancées"/>
+                     <j:translation_fr jcr:language="fr"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="Erweitertes Dashboard"/>
+                     <pagecontent jcr:primaryType="jnt:contentList">
+                        <advanced-dashboard jcr:primaryType="wemnt:advancedDashboard"/>
+                     </pagecontent>
+                  </marketing-100-advanced-dashboard>
+               </jexperience>
+            </site-settings-base>
+         </templates>
+      </jexperience-advanced-dashboard>
+   </modules>
+</content>

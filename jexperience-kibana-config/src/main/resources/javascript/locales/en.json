@@ -1,0 +1,13 @@
+{
+  "label": {
+    "settings": {
+      "title": "jexperience-kibana-config setting"
+    },
+    "action": {
+      "title": "jexperience-kibana-config - How to extend the ui ?"
+    },
+    "appsAccordion": {
+      "title": "jexperience-kibana-config"
+    }
+  }
+}
