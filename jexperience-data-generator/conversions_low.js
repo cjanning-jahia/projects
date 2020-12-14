@@ -13,7 +13,7 @@ async function getBrowser() {
 
 (async () => {
 
-    let siteUrls = fs.readFileSync("conversion-urls-low.csv");
+    let siteUrls = fs.readFileSync("conversions-low.csv");
     siteUrls = await csv(siteUrls);
 
     //let latLongPairs = fs.readFileSync("cities-lat-lon.csv");

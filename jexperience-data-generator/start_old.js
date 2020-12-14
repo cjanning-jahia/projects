@@ -6,33 +6,36 @@ const puppeteer = require("puppeteer");
 async function getBrowser() {
     const browser = await puppeteer.launch({
         headless: true,
-        devtools: false
+        devtools: true
     });
     return browser;
 }
 
 (async () => {
 
-    let siteUrls = fs.readFileSync("views.csv");
+    let siteUrls = fs.readFileSync("site-urls.csv");
     siteUrls = await csv(siteUrls);
 
-    //let latLongPairs = fs.readFileSync("cities-lat-lon.csv");
-    //latLongPairs = await csv(latLongPairs);
+    let latLongPairs = fs.readFileSync("cities-lat-lon.csv");
+    latLongPairs = await csv(latLongPairs);
 
-    var runSize = 50; //process.argv[2];
-    var formSubmitGoal = runSize * .1; //keep conversion around 10%
-    var formCount = 0;
+    var runSize = 100; //process.argv[2];
+
     for (let i = 0; i < runSize; i++) {
         //Randomly select URL and visit
+        //var randUrl = Math.floor(Math.random() * siteUrls.length);
+        //const url = siteUrls[randUrl].URL;
+
         const randomUrl = siteUrls[Math.floor(Math.random() * siteUrls.length)];
         const url = randomUrl.URL;
 
         const browser = await getBrowser();
         const page = await browser.newPage();
+
+        //page.setExtraHTTPHeaders({ referer: 'https://social.com/' });
+        //var url2 = "https://browserleaks.com/geo";
+        //const context = browser.defaultBrowserContext()
         /*
-        page.setExtraHTTPHeaders({ referer: 'https://social.com/' });
-        var url2 = "https://browserleaks.com/geo";
-        const context = browser.defaultBrowserContext()
         await context.overridePermissions(`${url}`, ['geolocation'])
         var lat, lon;
         for (let j = 0; j < latLongPairs.length; j++) {
@@ -42,15 +45,10 @@ async function getBrowser() {
         }
         await page.setGeolocation({latitude:parseFloat(lat), longitude:parseFloat(lon)})
          */
-        await page.goto(url,  {"waitUntil" : "networkidle0"});
-        if (formCount <= formSubmitGoal) {
-            await page.focus('input[name=conversion_input]');
-            await page.$eval('input[name=conversion_input]', el => el.value = 'test@test.com');
-            await page.click('button.btn.btn-sm.btn-primary');
-            formCount++;
-            console.log('Form submitted(' + (formCount) + ')-' + page.url());
-        }
+
+        await page.goto(url);
+
         await browser.close();
-        console.log('' + (i+1) + '/' + runSize + '-' + page.url());
+        console.log('' + (i+1) + '/' + runSize + '-' + url);
     }
 })();

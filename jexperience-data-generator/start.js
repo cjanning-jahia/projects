@@ -13,42 +13,77 @@ async function getBrowser() {
 
 (async () => {
 
-    let siteUrls = fs.readFileSync("site-urls.csv");
-    siteUrls = await csv(siteUrls);
+    let views = fs.readFileSync("views.csv");
+    views = await csv(views);
+    let conversions = fs.readFileSync("conversions.csv");
+    conversions = await csv(conversions);
+    let storyline = fs.readFileSync("storyline.csv");
+    storyline = await csv(storyline);
 
-    let latLongPairs = fs.readFileSync("cities-lat-lon.csv");
-    latLongPairs = await csv(latLongPairs);
+    let allPageViews = 200; //This will be the total views for the day
 
-    var runSize = 75; //process.argv[2];
-
-    for (let i = 0; i < runSize; i++) {
+    //Randomize page views across all pages
+    console.info('Creating ' + allPageViews + ' page views...');
+    for (let i = 0; i < allPageViews; i++) {
         //Randomly select URL and visit
-        //var randUrl = Math.floor(Math.random() * siteUrls.length);
-        //const url = siteUrls[randUrl].URL;
+        const randomUrl = views[Math.floor(Math.random() * views.length)];
 
-        const randomUrl = siteUrls[Math.floor(Math.random() * siteUrls.length)];
         const url = randomUrl.URL;
-
         const browser = await getBrowser();
         const page = await browser.newPage();
-
-        //page.setExtraHTTPHeaders({ referer: 'https://social.com/' });
-        //var url2 = "https://browserleaks.com/geo";
-        //const context = browser.defaultBrowserContext()
-        /*
-        await context.overridePermissions(`${url}`, ['geolocation'])
-        var lat, lon;
-        for (let j = 0; j < latLongPairs.length; j++) {
-            var randPair = Math.floor(Math.random() * latLongPairs.length);
-            lat = latLongPairs[randPair].Latitude;
-            lon = latLongPairs[randPair].Longitude;
-        }
-        await page.setGeolocation({latitude:parseFloat(lat), longitude:parseFloat(lon)})
-         */
-
         await page.goto(url);
-
         await browser.close();
-        console.log('' + (i+1) + '/' + runSize + '-' + url);
+
+        console.info('View:' + (i+1) + '/' + allPageViews + '-' + url);
     }
+
+    //Create higher page views for target storyline
+    let highPageView = Math.round(allPageViews * .20);
+    console.info('Creating ' + highPageView + ' higher page views...');
+    for (let i = 0; i < highPageView; i++) {
+        //Randomly select URL and visit
+        const randomUrl = storyline[Math.floor(Math.random() * storyline.length)];
+
+        const url = randomUrl.URL;
+        const browser = await getBrowser();
+        const page = await browser.newPage();
+        await page.goto(url);
+        await browser.close();
+
+        console.info('View:' + (i+1) + '/' + highPageView + '-' + url);
+    }
+
+    //Generate normal conversion rate across all but target storyline
+    let normConvCount = Math.round(allPageViews * .15);
+    console.info('Creating ' + normConvCount + ' conversions(all)...');
+    for (let i = 0; i < normConvCount; i++) {
+        //Randomly select URL and visit
+        const randomUrl = conversions[Math.floor(Math.random() * conversions.length)];
+
+        const url = randomUrl.URL;
+        const browser = await getBrowser();
+        const page = await browser.newPage();
+        await page.goto(url);
+        await browser.close();
+        //Submit a form
+        console.info('Conversion(all):' + (i+1) + '/' + normConvCount + '-' + url);
+    }
+
+    //Generate normal conversion rate across all but target storyline
+    let lowConvCount = Math.round(allPageViews * .05);
+    console.info('Creating ' + lowConvCount + ' conversions(storyline)...');
+    for (let i = 0; i < lowConvCount; i++) {
+        //Randomly select URL and visit
+        const randomUrl = storyline[Math.floor(Math.random() * storyline.length)];
+
+        const url = randomUrl.URL.replace("views","conversions");
+        const browser = await getBrowser();
+        const page = await browser.newPage();
+        await page.goto(url);
+        await browser.close();
+
+        console.info('Conversion(storyline):' + (i+1) + '/' + lowConvCount + '-' + url);
+    }
+
+    console.info("Finished data generation");
 })();
