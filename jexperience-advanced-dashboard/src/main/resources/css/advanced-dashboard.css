@@ -18,7 +18,7 @@ header.wem-page-head {
     z-index: 1035;
 }
 
- header h1 {
+ .headerTitle {
      font-weight: 300;
      font-size: 24px !important;
      color: rgba(0, 0, 0, .84) !important;
@@ -31,36 +31,15 @@ header.wem-page-head {
      line-height: 64px;
  }
 
+ .headerFilters {
+     display: flex;
+     float: right !important;
+     padding-right: 30px;
+ }
+
 header img {
     vertical-align: middle;
     margin-right: 10px;
-}
-
-.page-header {
-    color: #393B3C;
-    height: 85px;
-    line-height: 85px;
-    margin: 0 -15px;
-    margin-bottom: 16px;
-    padding-bottom: 0;
-    background: #fff;
-    box-shadow: 0 4px 4px rgba(59, 61, 64, 0.3);
-}
-
-.page-header h2 {
-    margin: 0;
-    padding: 0;
-    margin-left: 25px;
-    font-size: 25px;
-    line-height: 85px;
-    width: 80%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 .form-group select {

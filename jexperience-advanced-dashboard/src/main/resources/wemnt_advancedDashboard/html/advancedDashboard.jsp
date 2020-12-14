@@ -59,15 +59,16 @@
 </template:addResources>
 <jcr:sql var="result"
          sql="SELECT * FROM [wemnt:kibanaConfig] AS kibanaConfig WHERE ISDESCENDANTNODE(kibanaConfig, '${renderContext.site.path}')"/>
-<div class="container-fluid">
     <c:if test="${result.nodes != null && result.nodes.size > 0}">
-        <div style="margin-bottom:-5px">
+        <div style="margin-bottom:-5px;>
         <header class="wem-page-head">
-            <h1><img style="vertical-align: middle;margin-right:5px;"
+            <div class="headerTitle">
+                <img style="vertical-align: middle;margin-right:5px;"
                      src="/files/default/modules/jexperience/1.12.2/templates/files/icons_product_MF.png" height="18px"
                      width="18px"><fmt:message
-                    key="label.advancedDashboard"/></h1>
-            <div style="display: flex; float: right !important; padding-right: 30px">
+                    key="label.advancedDashboard"/>
+            </div>
+            <div class="headerFilters">
                 <div class="form-group">
                     Dashboard:&nbsp;
                     <select name="selectedDashboard" class="selectDashboard form-control"
@@ -98,6 +99,5 @@
     <c:if test="${result.nodes != null && result.nodes.size == 0}">
         <div class="warning-message"><fmt:message key="label.noDashboardFound"/></div>
     </c:if>
-</div>
 <template:addResources type="css" resources="advanced-dashboard.css"/>
 <template:theme/>
