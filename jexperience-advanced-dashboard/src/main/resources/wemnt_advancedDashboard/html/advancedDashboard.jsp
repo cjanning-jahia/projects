@@ -60,7 +60,7 @@
 <jcr:sql var="result"
          sql="SELECT * FROM [wemnt:kibanaConfig] AS kibanaConfig WHERE ISDESCENDANTNODE(kibanaConfig, '${renderContext.site.path}')"/>
     <c:if test="${result.nodes != null && result.nodes.size > 0}">
-        <div style="margin-bottom:-5px;>
+        <div style="margin-bottom:-5px;">
         <header class="wem-page-head">
             <div class="headerTitle">
                 <img style="vertical-align: middle;margin-right:5px;"
@@ -90,8 +90,7 @@
                 </div>
             </div>
         </header>
-        </div>
-        <div style="display: inline-block">
+          <div style="display: inline-block">
             <iframe id="dashboardFrame" frameborder="0"
                     style="overflow: hidden; height: 100%; width: 100%; position: absolute;"></iframe>
         </div>
