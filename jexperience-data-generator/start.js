@@ -31,7 +31,13 @@ async function getBrowser() {
         const url = randomUrl.URL;
         const browser = await getBrowser();
         const page = await browser.newPage();
-        await page.goto(url);
+        // Configure the navigation timeout
+        await page.goto(url, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
+        //await page.goto(url);
         await browser.close();
 
         console.info('View:' + (i+1) + '/' + allPageViews + '-' + url);
@@ -47,7 +53,13 @@ async function getBrowser() {
         const url = randomUrl.URL;
         const browser = await getBrowser();
         const page = await browser.newPage();
-        await page.goto(url);
+        // Configure the navigation timeout
+        await page.goto(url, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
+        //await page.goto(url);
         await browser.close();
 
         console.info('View:' + (i+1) + '/' + highPageView + '-' + url);
@@ -63,7 +75,14 @@ async function getBrowser() {
         const url = randomUrl.URL;
         const browser = await getBrowser();
         const page = await browser.newPage();
-        await page.goto(url);
+        // Configure the navigation timeout
+        await page.goto(url, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
+        //await page.goto(url);
+
         await browser.close();
         //Submit a form
         console.info('Conversion(all):' + (i+1) + '/' + normConvCount + '-' + url);
@@ -79,7 +98,13 @@ async function getBrowser() {
         const url = randomUrl.URL.replace("views","conversions");
         const browser = await getBrowser();
         const page = await browser.newPage();
-        await page.goto(url);
+        // Configure the navigation timeout
+        await page.goto(url, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
+        //await page.goto(url);
         await browser.close();
 
         console.info('Conversion(storyline):' + (i+1) + '/' + lowConvCount + '-' + url);
